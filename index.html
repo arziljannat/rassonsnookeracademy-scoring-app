@@ -1,42 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#050907" />
-  <title>Rasson Scoring | Professional Snooker</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="background.css" />
-  <link rel="stylesheet" href="scorecard-overrides.css" />
-  <link rel="stylesheet" href="premium.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#050806">
+<title>Rasson Snooker Academy</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;min-height:100%;font-family:Arial,Helvetica,sans-serif}
+body{
+ min-height:100vh;display:grid;place-items:center;overflow:hidden;
+ color:#fff;background:
+ linear-gradient(135deg,rgba(2,8,6,.82),rgba(2,18,11,.58)),
+ url('assets/rasson-background') center/cover no-repeat fixed;
+}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 45%,rgba(255,215,120,.10),transparent 38%),linear-gradient(rgba(0,0,0,.05),rgba(0,0,0,.42))}
+.landing{position:relative;z-index:1;width:100%;min-height:100vh;display:grid;place-items:center;padding:24px;text-align:center}
+.brand-box{transform:translateY(-3vh)}
+.brand-top{font-size:clamp(48px,9vw,116px);font-weight:900;letter-spacing:.18em;line-height:.95;text-transform:uppercase;color:#f0d27f;text-shadow:0 0 12px rgba(240,210,127,.35),0 0 42px rgba(240,210,127,.16)}
+.brand-academy{margin-top:18px;font-size:clamp(18px,2.5vw,34px);font-weight:800;letter-spacing:.48em;text-transform:uppercase;color:#fff;text-shadow:0 0 18px rgba(255,255,255,.18)}
+.divider{width:min(520px,70vw);height:1px;margin:28px auto 22px;background:linear-gradient(90deg,transparent,#f0d27f,transparent);box-shadow:0 0 12px rgba(240,210,127,.35)}
+.slogan{font-size:clamp(10px,1.2vw,15px);font-weight:800;letter-spacing:.42em;text-transform:uppercase;color:#00ff9d;text-shadow:0 0 15px rgba(0,255,157,.35)}
+@media(max-width:600px){
+ .brand-top{letter-spacing:.10em}.brand-academy{letter-spacing:.25em}.divider{margin:22px auto 18px}.slogan{letter-spacing:.24em}
+}
+</style>
 </head>
 <body>
-  <div class="ambient ambient-1"></div><div class="ambient ambient-2"></div>
-  <div class="app-shell">
-    <header class="topbar"><div class="brand-wrap"><div class="brand"><span class="brand-mark">R³</span><span>RASSON</span></div><div class="brand-sub">SNOOKER ACADEMY • POWERED BY XL SNOOKER</div></div><div class="top-actions"><div class="live-pill"><span class="live-dot"></span> LIVE TABLE</div><div class="mode-pill">PRO MODE</div></div></header>
-    <div class="hero-copy"><div>PLAY <span>•</span> PRACTICE <span>•</span> IMPROVE</div><small>MORE THAN A GAME</small></div>
-    <main class="main">
-      <section class="setup-card" id="setupCard">
-        <div class="eyebrow">MATCH SETUP</div><h1>Start a professional match</h1><p class="intro">Choose your game mode and enter the players.</p>
-        <div class="setup-options">
-          <label><span>GAME MODE</span><select id="gameMode"><option value="frame">FRAME</option><option value="century">CENTURY</option></select></label>
-          <label><span>PLAYERS</span><select id="playerCount"><option value="2">2 PLAYERS</option><option value="3">3 PLAYERS</option><option value="4">4 PLAYERS</option><option value="5">5 PLAYERS</option><option value="6">6 PLAYERS</option></select></label>
-        </div>
-        <div class="player-setup" id="playerInputs"></div>
-        <button class="primary-btn" id="startBtn">START MATCH <span>→</span></button>
-      </section>
-
-      <section class="scoreboard hidden" id="scoreboard">
-        <div class="players-grid" id="playersGrid"></div>
-        <section class="vs-panel"><div class="mini-label">TABLE 1</div><div class="center-brand">RASSON</div><div class="center-sub">PROFESSIONAL SCORING</div><div class="frame-box"><small>CURRENT FRAME</small><strong id="frameNumber">1</strong><span id="formatLabel">BEST OF 7 FRAMES</span></div><div class="mini-label">GAME MODE</div><div class="game-type" id="modeLabel">FRAME</div><button class="end-frame" id="endFrameBtn">⚑ END FRAME</button><button class="next-turn-btn" id="nextTurnBtn">⇄ NEXT PLAYER TURN</button><div class="center-actions"><button class="secondary-btn" id="pauseBtn">Ⅱ PAUSE</button><button class="secondary-btn" id="resetCenterBtn">↻ RESET</button></div><div class="turn-indicator" id="turnIndicator">PLAYER 1</div></section>
-      </section>
-
-      <section class="table-card hidden" id="tableCard"><div class="table-head"><div><div class="eyebrow">SCORING CONTROL</div><div class="sequence-row"><div class="subtle" id="sequenceLabel">RED → COLOUR</div><span class="phase-chip" id="phaseChip">FRAME MODE</span></div></div><div class="table-total"><span>BREAK</span><strong id="tablePoints">0</strong></div></div><div class="balls-grid" id="ballsGrid"><button class="ball ball-red" data-ball="red" data-points="1"><span>1</span><small>RED</small></button><button class="ball ball-yellow" data-ball="yellow" data-points="2"><span>2</span><small>YELLOW</small></button><button class="ball ball-green" data-ball="green" data-points="3"><span>3</span><small>GREEN</small></button><button class="ball ball-brown" data-ball="brown" data-points="4"><span>4</span><small>BROWN</small></button><button class="ball ball-blue" data-ball="blue" data-points="5"><span>5</span><small>BLUE</small></button><button class="ball ball-pink" data-ball="pink" data-points="6"><span>6</span><small>PINK</small></button><button class="ball ball-black" data-ball="black" data-points="7"><span>7</span><small>BLACK</small></button></div><div class="quick-actions"><button class="secondary-btn danger-action" id="foulBtn"><span>FOUL</span><small>Assign penalty</small></button><button class="secondary-btn" id="missBtn"><span>MISS / END TURN</span><small>Pass the table</small></button><button class="secondary-btn" id="undoBtn"><span>UNDO</span><small>Reverse last action</small></button></div></section>
-      <section class="history-card hidden" id="historyCard"><div class="history-head"><div><div class="eyebrow">SESSION LOG</div><div class="history-title">Break history</div></div><div class="record-dot">● RECORDING</div></div><div id="breakHistory" class="history-list"></div></section>
-      <section class="controls hidden" id="controls"><button class="secondary-btn" id="newFrameBtn"><span>NEW FRAME</span><small>Keep match players</small></button><button class="danger-btn" id="resetMatchBtn"><span>RESET MATCH</span><small>Clear current session</small></button></section>
-    </main>
-    <footer class="status-bar"><span>◷ TABLE TIME <b>00:28:15</b></span><span>◷ START TIME <b>05:12 PM</b></span><strong>▣ TABLE 1</strong><span>♧ SNOOKER</span><span class="status-live">● IN PROGRESS</span></footer><div class="footer-motto">PRECISION BUILDS CHAMPIONS</div>
-  </div>
-  <div class="modal hidden" id="foulModal"><div class="modal-box"><div class="eyebrow">FOUL AWARD</div><h2>Penalty points</h2><p class="subtle" id="foulHelp">Select the penalty for this mode.</p><div class="foul-grid" id="foulGrid"><button data-foul="4">4</button><button data-foul="5">5</button><button data-foul="6">6</button><button data-foul="7">7</button><button data-foul="10">10</button></div><button class="secondary-btn modal-cancel" id="cancelFoul">CANCEL</button></div></div>
-  <script src="app.js"></script>
-</body></html>
+<main class="landing">
+  <section class="brand-box" aria-label="Rasson Snooker Academy">
+    <div class="brand-top">RASSON</div>
+    <div class="brand-academy">SNOOKER ACADEMY</div>
+    <div class="divider"></div>
+    <div class="slogan">POWERED BY XL SNOOKER</div>
+  </section>
+</main>
+</body>
+</html>
