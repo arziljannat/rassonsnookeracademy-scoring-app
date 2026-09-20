@@ -1,5 +1,6 @@
 /* Premium scoring screen refinements */
 body{background-color:#020806!important;background-image:linear-gradient(135deg,rgba(2,8,6,.16),rgba(2,18,11,.06)),url('./assets/rasson-background.jpg'),url('./assets/rasson-bg.svg')!important;background-position:center!important;background-size:100% 100%!important;background-repeat:no-repeat!important;background-attachment:fixed!important}
+.hidden,.scoreboard.hidden{display:none!important}
 .setup-card,.table-card,.history-card{background:linear-gradient(145deg,rgba(7,24,16,.64),rgba(3,12,8,.48))!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;box-shadow:0 18px 55px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.045)!important}
 .scoreboard{display:grid!important;grid-template-columns:minmax(0,1fr) 190px!important;gap:24px!important;align-items:stretch!important}
 .players-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:24px!important;min-width:0!important}
