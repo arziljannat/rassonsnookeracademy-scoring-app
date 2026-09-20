@@ -1,1 +1,37 @@
-body{background:linear-gradient(rgba(2,5,3,.68),rgba(2,5,3,.84)),url('assets/rasson-background') center center/cover fixed no-repeat,#030907!important}
+/* Premium Rasson background treatment */
+body{
+  background:
+    radial-gradient(circle at 50% 0%,rgba(190,145,55,.08),transparent 34%),
+    linear-gradient(135deg,#020604 0%,#07130c 52%,#020403 100%) !important;
+}
+
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  pointer-events:none;
+  opacity:.30;
+  background-image:
+    linear-gradient(rgba(1,5,3,.60),rgba(1,5,3,.78)),
+    url('assets/rasson-background');
+  background-repeat:no-repeat;
+  background-position:center 30%,center 30%;
+  background-size:cover, min(900px,72vw) auto;
+  filter:saturate(.82) contrast(1.05);
+}
+
+body:after{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  background:
+    linear-gradient(180deg,rgba(1,5,3,.28) 0%,rgba(1,5,3,.06) 38%,rgba(1,5,3,.58) 100%),
+    radial-gradient(ellipse at center,transparent 20%,rgba(0,0,0,.42) 100%);
+}
+
+.app-shell{max-width:1160px}
+.topbar{padding-top:10px;background:linear-gradient(180deg,rgba(3,10,6,.36),transparent)}
+.setup-card,.table-card,.history-card{background:linear-gradient(145deg,rgba(8,24,15,.91),rgba(4,13,8,.88))}
