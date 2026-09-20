@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#050505" />
+  <title>Rasson Scoring | Professional Snooker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div>
+        <div class="brand">RASSON</div>
+        <div class="brand-sub">SNOOKER ACADEMY • SCORING</div>
+      </div>
+      <div class="status-pill"><span class="status-dot"></span> PROFESSIONAL MODE</div>
+    </header>
+
+    <main class="main">
+      <section class="setup-card" id="setupCard">
+        <div class="section-title">NEW FRAME</div>
+        <div class="player-setup">
+          <label>PLAYER 1<input id="player1Input" value="Player 1" maxlength="24" /></label>
+          <label>PLAYER 2<input id="player2Input" value="Player 2" maxlength="24" /></label>
+        </div>
+        <button class="primary-btn" id="startBtn">START FRAME</button>
+      </section>
+
+      <section class="scoreboard hidden" id="scoreboard">
+        <div class="score-card player-card active" id="playerCard1">
+          <div class="player-name" id="player1Name">PLAYER 1</div>
+          <div class="score" id="score1">0</div>
+          <div class="turn-label" id="turn1">YOUR TURN</div>
+        </div>
+
+        <div class="vs-panel">
+          <div class="frame-label">FRAME</div>
+          <div class="frame-number" id="frameNumber">1</div>
+          <div class="turn-indicator" id="turnIndicator">PLAYER 1</div>
+        </div>
+
+        <div class="score-card player-card" id="playerCard2">
+          <div class="player-name" id="player2Name">PLAYER 2</div>
+          <div class="score" id="score2">0</div>
+          <div class="turn-label" id="turn2">WAITING</div>
+        </div>
+      </section>
+
+      <section class="table-card hidden" id="tableCard">
+        <div class="table-head">
+          <div>
+            <div class="section-title">SCORING TABLE</div>
+            <div class="subtle" id="sequenceLabel">RED → COLOUR</div>
+          </div>
+          <div class="table-points" id="tablePoints">0</div>
+        </div>
+
+        <div class="balls-grid" id="ballsGrid">
+          <button class="ball ball-red" data-ball="red" data-points="1">1</button>
+          <button class="ball ball-yellow" data-ball="yellow" data-points="2">2</button>
+          <button class="ball ball-green" data-ball="green" data-points="3">3</button>
+          <button class="ball ball-brown" data-ball="brown" data-points="4">4</button>
+          <button class="ball ball-blue" data-ball="blue" data-points="5">5</button>
+          <button class="ball ball-pink" data-ball="pink" data-points="6">6</button>
+          <button class="ball ball-black" data-ball="black" data-points="7">7</button>
+        </div>
+
+        <div class="quick-actions">
+          <button class="secondary-btn" id="foulBtn">FOUL</button>
+          <button class="secondary-btn" id="missBtn">MISS / END TURN</button>
+          <button class="secondary-btn" id="undoBtn">UNDO</button>
+        </div>
+      </section>
+
+      <section class="history-card hidden" id="historyCard">
+        <div class="section-title">BREAK HISTORY</div>
+        <div id="breakHistory" class="history-list"></div>
+      </section>
+
+      <section class="controls hidden" id="controls">
+        <button class="secondary-btn" id="newFrameBtn">NEW FRAME</button>
+        <button class="danger-btn" id="resetMatchBtn">RESET MATCH</button>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal hidden" id="foulModal">
+    <div class="modal-box">
+      <div class="section-title">FOUL</div>
+      <p class="subtle">Select the foul value awarded to the opponent.</p>
+      <div class="foul-grid">
+        <button data-foul="4">4</button>
+        <button data-foul="5">5</button>
+        <button data-foul="6">6</button>
+        <button data-foul="7">7</button>
+      </div>
+      <button class="secondary-btn" id="cancelFoul">CANCEL</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
