@@ -1,0 +1,43 @@
+/* Transparent Habib-style scoreboard */
+.scoreboard {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  gap: 28px;
+}
+.score-card,
+.vs-panel {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  min-height: 190px;
+}
+.score-card:before {
+  display: none !important;
+}
+.score-card.active {
+  border: 0 !important;
+  box-shadow: none !important;
+}
+.player-name {
+  color: rgba(248,243,232,.82) !important;
+  text-shadow: 0 2px 14px rgba(0,0,0,.8);
+}
+.score {
+  text-shadow: 0 3px 28px rgba(0,0,0,.85), 0 0 24px rgba(255,227,160,.12) !important;
+}
+.turn-label,
+.mini-label,
+.vs {
+  text-shadow: 0 2px 12px rgba(0,0,0,.9);
+}
+.turn-indicator {
+  background: rgba(3,10,6,.38) !important;
+  backdrop-filter: blur(5px);
+}
+@media (max-width:760px) {
+  .score-card,
+  .vs-panel { min-height: 145px; }
+  .scoreboard { gap: 6px; }
+}
