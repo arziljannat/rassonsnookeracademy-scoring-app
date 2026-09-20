@@ -18,6 +18,8 @@ function render(){
   $("sequenceLabel").textContent=state.phase==="red"?"RED":state.phase==="colour"?"COLOUR":`COLOURS ONLY: ${COLOURS[state.colourIndex]?.ball?.toUpperCase()||"COMPLETE"}`;
   $("playerCard1").classList.toggle("active",state.turn===0);$("playerCard2").classList.toggle("active",state.turn===1);
   $("turn1").textContent=state.turn===0?"YOUR TURN":"WAITING";$("turn2").textContent=state.turn===1?"YOUR TURN":"WAITING";
+  $("turnBadge1").textContent=state.turn===0?"AT TABLE":"WAITING";$("turnBadge2").textContent=state.turn===1?"AT TABLE":"WAITING";
+  $("turnBadge1").classList.toggle("waiting",state.turn!==0);$("turnBadge2").classList.toggle("waiting",state.turn!==1);
   [1,2].forEach((n,i)=>{const s=state.scores[i];const score=$("score"+n);if(score)score.textContent=s;const p=$("points"+n);if(p)p.textContent=s;});
   document.querySelectorAll(".ball").forEach(btn=>{const ball=btn.dataset.ball;let allowed=false;if(state.phase==="red")allowed=ball==="red";if(state.phase==="colour")allowed=ball!=="red";if(state.phase==="colours")allowed=ball===COLOURS[state.colourIndex]?.ball;btn.disabled=!allowed;btn.style.opacity=allowed?"1":".35";});
   $("breakHistory").innerHTML=state.history.length?state.history.map(x=>`<div class="history-item"><span>${x.player}</span><strong>${x.points} pts</strong></div>`).join(""): '<div class="subtle">No break recorded yet.</div>';
@@ -34,7 +36,7 @@ document.addEventListener("click",event=>{
   const ball=event.target.closest(".ball");if(ball&&!ball.disabled)return scoreBall(ball.dataset.ball,Number(ball.dataset.points));
   const quick=event.target.closest("[data-quick-score]");if(quick)return quickScore(Number(quick.dataset.quickScore));
   if(["startBtn"].includes(event.target.id))startFrame();
-  if(["missBtn","endFrameBtn"].includes(event.target.id))switchTurn();
+  if(["missBtn","endFrameBtn","nextTurnBtn"].includes(event.target.id))switchTurn();
   if(["undoBtn","undoBtn1","undoBtn2"].includes(event.target.id))undo();
   if(event.target.id==="newFrameBtn")newFrame();if(["resetMatchBtn","resetCenterBtn"].includes(event.target.id))resetMatch();
   if(["foulBtn","foulBtn1","foulBtn2"].includes(event.target.id))$("foulModal").classList.remove("hidden");
