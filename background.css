@@ -1,43 +1,8 @@
-/* Premium Rasson Academy background */
-body{
-  background:
-    radial-gradient(circle at 50% 0%,rgba(205,160,70,.16),transparent 38%),
-    linear-gradient(135deg,#030806 0%,#07150d 52%,#020403 100%) !important;
-  min-height:100vh;
-  position:relative;
-  overflow-x:hidden;
-}
+@import url('reference.css');
 
-body:before{
-  content:"";
-  position:fixed;
-  inset:0;
-  z-index:-2;
-  pointer-events:none;
-  opacity:.58;
-  background-image:url('assets/rasson-background');
-  background-repeat:no-repeat;
-  background-position:center 56%;
-  background-size:min(980px,86vw) auto;
-  filter:saturate(.95) contrast(1.04) brightness(.88);
-}
-
-body:after{
-  content:"";
-  position:fixed;
-  inset:0;
-  z-index:-1;
-  pointer-events:none;
-  background:
-    linear-gradient(180deg,rgba(2,7,4,.34) 0%,rgba(2,7,4,.10) 42%,rgba(2,7,4,.42) 100%),
-    radial-gradient(ellipse at center,transparent 28%,rgba(0,0,0,.30) 100%);
-}
-
-.ambient{opacity:.12 !important}
-.app-shell{max-width:1160px}
-.topbar{padding-top:10px;background:linear-gradient(180deg,rgba(3,10,6,.22),transparent)}
-.setup-card,.table-card,.history-card{background:linear-gradient(145deg,rgba(8,24,15,.78),rgba(4,13,8,.70))}
-
-@media(max-width:760px){
-  body:before{background-size:850px auto;background-position:center 48%;opacity:.42}
-}
+/* Rasson Academy background layer */
+body{min-height:100vh;position:relative;overflow-x:hidden!important}
+body:before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:.58;background-image:url('assets/rasson-background');background-repeat:no-repeat;background-position:center 56%;background-size:min(980px,86vw) auto;filter:saturate(.95) contrast(1.04) brightness(.88)}
+body:after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(2,7,4,.34),rgba(2,7,4,.10) 42%,rgba(2,7,4,.42)),radial-gradient(ellipse at center,transparent 28%,rgba(0,0,0,.30) 100%)}
+.ambient{opacity:.12!important}
+@media(max-width:760px){body:before{background-size:850px auto;background-position:center 48%;opacity:.42}}
