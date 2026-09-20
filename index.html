@@ -8,10 +8,10 @@
 <style>
 *{box-sizing:border-box}
 html,body{margin:0;width:100%;min-height:100%;font-family:Georgia,'Times New Roman',serif}
-body{min-height:100vh;display:grid;place-items:center;overflow:hidden;color:#fff;background:linear-gradient(135deg,rgba(2,8,6,.84),rgba(2,18,11,.60)),url('assets/rasson-background') center/cover no-repeat fixed}
-body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 45%,rgba(255,215,120,.12),transparent 38%),linear-gradient(rgba(0,0,0,.05),rgba(0,0,0,.46))}
+body{min-height:100vh;display:grid;place-items:center;overflow:hidden;color:#fff;background:linear-gradient(135deg,rgba(2,8,6,.68),rgba(2,18,11,.38)),url('assets/rasson-background') center/cover no-repeat fixed}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 45%,rgba(255,215,120,.10),transparent 38%),linear-gradient(rgba(0,0,0,.03),rgba(0,0,0,.28))}
 .landing{position:relative;z-index:1;width:100%;min-height:100vh;display:grid;place-items:center;padding:24px;text-align:center}
-.brand-box{transform:translateY(-3vh);padding:clamp(28px,4vw,58px);border:1px solid rgba(240,210,127,.58);border-radius:26px;background:rgba(0,8,5,.40);box-shadow:0 0 35px rgba(0,255,157,.09),inset 0 0 35px rgba(240,210,127,.05);backdrop-filter:blur(9px)}
+.brand-box{transform:translateY(-3vh);padding:clamp(28px,4vw,58px);border:1px solid rgba(240,210,127,.58);border-radius:26px;background:rgba(0,8,5,.16);box-shadow:0 0 35px rgba(0,255,157,.09),inset 0 0 35px rgba(240,210,127,.05);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px)}
 .brand-top,.brand-academy,.slogan,.score-heading,.mode-btn{font-style:italic;font-weight:900}
 .brand-top{font-size:clamp(48px,9vw,116px);letter-spacing:.18em;line-height:.95;text-transform:uppercase;color:#f0d27f;text-shadow:0 0 12px rgba(240,210,127,.38),0 0 42px rgba(240,210,127,.18)}
 .brand-academy{margin-top:18px;font-size:clamp(18px,2.5vw,34px);letter-spacing:.42em;text-transform:uppercase;color:#fff;text-shadow:0 0 18px rgba(255,255,255,.20)}
@@ -20,10 +20,10 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;background:rad
 .score-heading{margin:32px auto 0;font-size:clamp(16px,2vw,25px);letter-spacing:.16em;text-transform:uppercase;color:#f8e6b0;text-shadow:0 0 14px rgba(240,210,127,.35)}
 .score-heading:after{content:"";display:block;width:110px;height:2px;margin:13px auto 0;background:linear-gradient(90deg,transparent,#00ff9d,transparent);box-shadow:0 0 12px rgba(0,255,157,.5)}
 .mode-buttons{display:flex;justify-content:center;gap:16px;margin-top:25px}
-.mode-btn{min-width:190px;padding:17px 24px;border:1px solid #00ff9d;border-radius:13px;background:linear-gradient(135deg,rgba(0,255,157,.14),rgba(0,0,0,.35));color:#fff;font-size:13px;letter-spacing:.13em;text-transform:uppercase;cursor:pointer;box-shadow:0 0 18px rgba(0,255,157,.13);transition:.2s}
-.mode-btn:hover{transform:translateY(-3px);background:linear-gradient(135deg,rgba(0,255,157,.30),rgba(0,0,0,.4));box-shadow:0 0 25px rgba(0,255,157,.32)}
+.mode-btn{min-width:190px;padding:17px 24px;border:1px solid #00ff9d;border-radius:13px;background:linear-gradient(135deg,rgba(0,255,157,.12),rgba(0,0,0,.18));color:#fff;font-size:13px;letter-spacing:.13em;text-transform:uppercase;cursor:pointer;box-shadow:0 0 18px rgba(0,255,157,.13);transition:.2s}
+.mode-btn:hover{transform:translateY(-3px);background:linear-gradient(135deg,rgba(0,255,157,.26),rgba(0,0,0,.25));box-shadow:0 0 25px rgba(0,255,157,.32)}
 .mode-btn.century{border-color:#f0d27f;color:#f0d27f;box-shadow:0 0 18px rgba(240,210,127,.13)}
-.mode-btn.century:hover{background:linear-gradient(135deg,rgba(240,210,127,.20),rgba(0,0,0,.4));box-shadow:0 0 25px rgba(240,210,127,.28)}
+.mode-btn.century:hover{background:linear-gradient(135deg,rgba(240,210,127,.18),rgba(0,0,0,.25));box-shadow:0 0 25px rgba(240,210,127,.28)}
 @media(max-width:600px){.brand-box{width:100%;padding:30px 18px}.brand-top{letter-spacing:.10em}.brand-academy{letter-spacing:.22em}.divider{margin:22px auto 18px}.slogan{letter-spacing:.22em}.score-heading{letter-spacing:.08em;line-height:1.4}.mode-buttons{flex-direction:column;align-items:center;gap:12px}.mode-btn{width:min(320px,100%)}}
 </style>
 </head>
