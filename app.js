@@ -5,13 +5,47 @@ const state = {
   turn: 0,
   redsRemaining: 15,
   phase: "red",
+  colourIndex: 0,
   tablePoints: 0,
-  break: 0,
   history: [],
+  events: [],
   started: false
 };
 
+const COLOURS = [
+  { ball: "yellow", points: 2 },
+  { ball: "green", points: 3 },
+  { ball: "brown", points: 4 },
+  { ball: "blue", points: 5 },
+  { ball: "pink", points: 6 },
+  { ball: "black", points: 7 }
+];
+
 const $ = (id) => document.getElementById(id);
+
+function snapshot() {
+  return JSON.parse(JSON.stringify({
+    scores: state.scores,
+    turn: state.turn,
+    redsRemaining: state.redsRemaining,
+    phase: state.phase,
+    colourIndex: state.colourIndex,
+    tablePoints: state.tablePoints,
+    history: state.history
+  }));
+}
+
+function saveEvent(label) {
+  state.events.push({ label, before: snapshot() });
+}
+
+function finishTurn() {
+  if (state.tablePoints > 0) {
+    state.history.unshift({ player: state.players[state.turn], points: state.tablePoints });
+  }
+  state.tablePoints = 0;
+  state.turn = state.turn === 0 ? 1 : 0;
+}
 
 function render() {
   $("player1Name").textContent = state.players[0].toUpperCase();
@@ -21,9 +55,7 @@ function render() {
   $("frameNumber").textContent = state.frame;
   $("turnIndicator").textContent = state.players[state.turn].toUpperCase();
   $("tablePoints").textContent = state.tablePoints;
-  $("sequenceLabel").textContent =
-    state.phase === "red" ? "RED" :
-    state.phase === "colour" ? "COLOUR" : "COLOURS ONLY";
+  $("sequenceLabel").textContent = state.phase === "red" ? "RED" : state.phase === "colour" ? "COLOUR" : `COLOURS ONLY: ${COLOURS[state.colourIndex]?.ball?.toUpperCase() || "COMPLETE"}`;
 
   $("playerCard1").classList.toggle("active", state.turn === 0);
   $("playerCard2").classList.toggle("active", state.turn === 1);
@@ -32,22 +64,16 @@ function render() {
 
   document.querySelectorAll(".ball").forEach(btn => {
     const ball = btn.dataset.ball;
-    let disabled = false;
-    if (state.phase === "red") {
-      disabled = ball !== "red";
-    } else if (state.phase === "colour") {
-      disabled = ball === "red";
-    } else {
-      disabled = ball === "red";
-    }
-    btn.disabled = disabled;
-    btn.style.opacity = disabled ? "0.35" : "1";
+    let allowed = false;
+    if (state.phase === "red") allowed = ball === "red";
+    if (state.phase === "colour") allowed = ball !== "red";
+    if (state.phase === "colours") allowed = ball === COLOURS[state.colourIndex]?.ball;
+    btn.disabled = !allowed;
+    btn.style.opacity = allowed ? "1" : "0.35";
   });
 
   $("breakHistory").innerHTML = state.history.length
-    ? state.history.map(item =>
-      '<div class="history-item"><span>' + item.player +
-      '</span><strong>' + item.points + ' pts</strong></div>').join("")
+    ? state.history.map(item => `<div class="history-item"><span>${item.player}</span><strong>${item.points} pts</strong></div>`).join("")
     : '<div class="subtle">No break recorded yet.</div>';
 }
 
@@ -55,100 +81,84 @@ function startFrame() {
   state.players[0] = $("player1Input").value.trim() || "Player 1";
   state.players[1] = $("player2Input").value.trim() || "Player 2";
   state.started = true;
+  ["scoreboard", "tableCard", "historyCard", "controls"].forEach(id => $(id).classList.remove("hidden"));
   $("setupCard").classList.add("hidden");
-  $("scoreboard").classList.remove("hidden");
-  $("tableCard").classList.remove("hidden");
-  $("historyCard").classList.remove("hidden");
-  $("controls").classList.remove("hidden");
-  render();
-}
-
-function switchTurn() {
-  if (state.tablePoints > 0) {
-    state.history.unshift({
-      player: state.players[state.turn],
-      points: state.tablePoints
-    });
-    state.break = 0;
-  }
-  state.tablePoints = 0;
-  state.turn = state.turn === 0 ? 1 : 0;
   render();
 }
 
 function scoreBall(ball, points) {
-  if (state.phase === "red" && ball !== "red") return;
-  if (state.phase !== "red" && ball === "red") return;
+  const valid = (state.phase === "red" && ball === "red") ||
+    (state.phase === "colour" && ball !== "red") ||
+    (state.phase === "colours" && ball === COLOURS[state.colourIndex]?.ball);
+  if (!valid) return;
 
+  saveEvent(`Scored ${points}`);
   state.scores[state.turn] += points;
   state.tablePoints += points;
 
-  if (state.phase === "red" && ball === "red") {
-    state.phase = "colour";
+  if (state.phase === "red") {
     state.redsRemaining -= 1;
-  } else if (state.phase === "colour" && state.redsRemaining > 0) {
-    state.phase = "red";
-  } else if (state.redsRemaining <= 0) {
-    state.phase = "colours";
+    state.phase = "colour";
+  } else if (state.phase === "colour") {
+    state.phase = state.redsRemaining > 0 ? "red" : "colours";
+    if (state.phase === "colours") state.colourIndex = 0;
+  } else if (state.phase === "colours") {
+    state.colourIndex += 1;
+    if (state.colourIndex >= COLOURS.length) state.phase = "complete";
   }
+  render();
+}
+
+function switchTurn() {
+  saveEvent("End turn");
+  finishTurn();
+  render();
+}
+
+function applyFoul(points) {
+  saveEvent(`Foul ${points}`);
+  state.scores[state.turn === 0 ? 1 : 0] += points;
+  finishTurn();
+  $("foulModal").classList.add("hidden");
+  render();
+}
+
+function undo() {
+  const event = state.events.pop();
+  if (!event) return alert("Nothing to undo.");
+  Object.assign(state, event.before);
   render();
 }
 
 function newFrame() {
   state.frame += 1;
-  state.scores = [0, 0];
-  state.turn = 0;
-  state.redsRemaining = 15;
-  state.phase = "red";
-  state.tablePoints = 0;
-  state.break = 0;
-  state.history = [];
+  state.scores = [0, 0]; state.turn = 0; state.redsRemaining = 15;
+  state.phase = "red"; state.colourIndex = 0; state.tablePoints = 0;
+  state.history = []; state.events = [];
   render();
 }
 
 function resetMatch() {
-  state.frame = 1;
-  state.scores = [0, 0];
-  state.turn = 0;
-  state.redsRemaining = 15;
-  state.phase = "red";
-  state.tablePoints = 0;
-  state.break = 0;
-  state.history = [];
-  state.started = false;
+  state.frame = 1; state.scores = [0, 0]; state.turn = 0; state.redsRemaining = 15;
+  state.phase = "red"; state.colourIndex = 0; state.tablePoints = 0;
+  state.history = []; state.events = []; state.started = false;
   $("setupCard").classList.remove("hidden");
-  $("scoreboard").classList.add("hidden");
-  $("tableCard").classList.add("hidden");
-  $("historyCard").classList.add("hidden");
-  $("controls").classList.add("hidden");
+  ["scoreboard", "tableCard", "historyCard", "controls"].forEach(id => $(id).classList.add("hidden"));
+  render();
 }
 
-document.addEventListener("click", (event) => {
+document.addEventListener("click", event => {
   const ball = event.target.closest(".ball");
-  if (ball && !ball.disabled) {
-    scoreBall(ball.dataset.ball, Number(ball.dataset.points));
-    return;
-  }
-
+  if (ball && !ball.disabled) return scoreBall(ball.dataset.ball, Number(ball.dataset.points));
   if (event.target.id === "startBtn") startFrame();
   if (event.target.id === "missBtn") switchTurn();
-  if (event.target.id === "undoBtn") {
-    // Simple safe undo: reload current browser session state from history is intentionally
-    // deferred until the full event log is added in the next professional rules pass.
-    alert("UNDO will be connected to the full event log in the next rules-engine update.");
-  }
+  if (event.target.id === "undoBtn") undo();
   if (event.target.id === "newFrameBtn") newFrame();
   if (event.target.id === "resetMatchBtn") resetMatch();
   if (event.target.id === "foulBtn") $("foulModal").classList.remove("hidden");
   if (event.target.id === "cancelFoul") $("foulModal").classList.add("hidden");
-
   const foul = event.target.closest("[data-foul]");
-  if (foul) {
-    const points = Number(foul.dataset.foul);
-    state.scores[state.turn === 0 ? 1 : 0] += points;
-    $("foulModal").classList.add("hidden");
-    switchTurn();
-  }
+  if (foul) applyFoul(Number(foul.dataset.foul));
 });
 
 render();
