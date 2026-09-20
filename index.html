@@ -4,42 +4,37 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#050806">
-<title>Rasson Snooker Academy</title>
+<title>Rasson Snooker Academy Scoring</title>
+<link rel="stylesheet" href="style.css">
 <style>
-*{box-sizing:border-box}
-html,body{margin:0;width:100%;min-height:100%;font-family:Georgia,'Times New Roman',serif}
-body{min-height:100vh;display:grid;place-items:center;overflow:hidden;color:#fff;background-color:#020806;background-image:linear-gradient(135deg,rgba(2,8,6,.20),rgba(2,18,11,.08)),url('./assets/rasson-background.jpg'),url('./assets/rasson-bg.svg');background-position:center;background-size:100% 100%;background-repeat:no-repeat;background-attachment:fixed}
-body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 45%,rgba(255,215,120,.06),transparent 38%),linear-gradient(rgba(0,0,0,.02),rgba(0,0,0,.10))}
-.landing{position:relative;z-index:1;width:100%;min-height:100vh;display:grid;place-items:center;padding:24px;text-align:center}
-.brand-box{transform:translateY(8vh);padding:clamp(28px,4vw,58px);border:1px solid rgba(240,210,127,.58);border-radius:26px;background:rgba(0,8,5,.04);box-shadow:0 0 35px rgba(0,255,157,.09),inset 0 0 35px rgba(240,210,127,.05)}
-.brand-top,.brand-academy,.slogan,.score-heading,.mode-btn{font-style:italic;font-weight:900}
-.brand-top{font-size:clamp(48px,9vw,116px);letter-spacing:.18em;line-height:.95;text-transform:uppercase;color:#f0d27f;text-shadow:0 0 12px rgba(240,210,127,.38),0 0 42px rgba(240,210,127,.18)}
-.brand-academy{margin-top:18px;font-size:clamp(18px,2.5vw,34px);letter-spacing:.42em;text-transform:uppercase;color:#fff;text-shadow:0 0 18px rgba(255,255,255,.20)}
-.divider{width:min(520px,70vw);height:1px;margin:28px auto 22px;background:linear-gradient(90deg,transparent,#f0d27f,transparent);box-shadow:0 0 12px rgba(240,210,127,.38)}
-.slogan{font-size:clamp(10px,1.2vw,15px);letter-spacing:.38em;text-transform:uppercase;color:#00ff9d;text-shadow:0 0 15px rgba(0,255,157,.38)}
-.score-heading{margin:32px auto 0;font-size:clamp(16px,2vw,25px);letter-spacing:.16em;text-transform:uppercase;color:#f8e6b0;text-shadow:0 0 14px rgba(240,210,127,.35)}
-.score-heading:after{content:"";display:block;width:110px;height:2px;margin:13px auto 0;background:linear-gradient(90deg,transparent,#00ff9d,transparent);box-shadow:0 0 12px rgba(0,255,157,.5)}
-.mode-buttons{display:flex;justify-content:center;gap:16px;margin-top:25px}
-.mode-btn{min-width:190px;padding:17px 24px;border:1px solid #00ff9d;border-radius:13px;background:linear-gradient(135deg,rgba(0,255,157,.12),rgba(0,0,0,.18));color:#fff;font-size:13px;letter-spacing:.13em;text-transform:uppercase;cursor:pointer;box-shadow:0 0 18px rgba(0,255,157,.13);transition:.2s}
-.mode-btn:hover{transform:translateY(-3px);background:linear-gradient(135deg,rgba(0,255,157,.26),rgba(0,0,0,.25));box-shadow:0 0 25px rgba(0,255,157,.32)}
-.mode-btn.century{border-color:#f0d27f;color:#f0d27f;box-shadow:0 0 18px rgba(240,210,127,.13)}
-.mode-btn.century:hover{background:linear-gradient(135deg,rgba(240,210,127,.18),rgba(0,0,0,.25));box-shadow:0 0 25px rgba(240,210,127,.28)}
-@media(max-width:600px){.brand-box{width:100%;padding:30px 18px;transform:translateY(5vh)}.brand-top{letter-spacing:.10em}.brand-academy{letter-spacing:.22em}.divider{margin:22px auto 18px}.slogan{letter-spacing:.22em}.score-heading{letter-spacing:.08em;line-height:1.4}.mode-buttons{flex-direction:column;align-items:center;gap:12px}.mode-btn{width:min(320px,100%)}}
+body{background-color:#020806!important;background-image:linear-gradient(135deg,rgba(2,8,6,.25),rgba(2,18,11,.12)),url('./assets/rasson-background.jpg'),url('./assets/rasson-bg.svg')!important;background-position:center!important;background-size:100% 100%!important;background-repeat:no-repeat!important;background-attachment:fixed!important}
+.landing{min-height:100vh;display:grid;place-items:center;padding:24px;text-align:center}
+.landing .brand-box{transform:translateY(-3vh);padding:clamp(28px,4vw,58px);border:1px solid rgba(240,210,127,.58);border-radius:26px;background:rgba(0,8,5,.04);box-shadow:0 0 35px rgba(0,255,157,.09),inset 0 0 35px rgba(240,210,127,.05)}
+.brand-top,.brand-academy,.slogan,.score-heading,.mode-btn{font-style:italic;font-weight:900}.brand-top{font-size:clamp(48px,9vw,116px);letter-spacing:.18em;line-height:.95;text-transform:uppercase;color:#f0d27f}.brand-academy{margin-top:18px;font-size:clamp(18px,2.5vw,34px);letter-spacing:.42em;text-transform:uppercase;color:#fff}.divider{width:min(520px,70vw);height:1px;margin:28px auto 22px;background:linear-gradient(90deg,transparent,#f0d27f,transparent)}.slogan{font-size:clamp(10px,1.2vw,15px);letter-spacing:.38em;text-transform:uppercase;color:#00ff9d}.score-heading{margin:32px auto 0;font-size:clamp(16px,2vw,25px);letter-spacing:.16em;text-transform:uppercase;color:#f8e6b0}.score-heading:after{content:"";display:block;width:110px;height:2px;margin:13px auto 0;background:linear-gradient(90deg,transparent,#00ff9d,transparent)}.mode-buttons{display:flex;justify-content:center;gap:16px;margin-top:25px}.landing .mode-btn{min-width:190px;padding:17px 24px;border:1px solid #00ff9d;border-radius:13px;background:linear-gradient(135deg,rgba(0,255,157,.12),rgba(0,0,0,.18));color:#fff;font-size:13px;letter-spacing:.13em;text-transform:uppercase;cursor:pointer}.landing .mode-btn.century{border-color:#f0d27f;color:#f0d27f}
+.scoring-app{min-height:100vh}.scoring-app.hidden{display:none!important}.setup-card .player-count-row{max-width:360px;margin:20px 0}.setup-card select{width:100%;margin-top:9px;padding:16px;border:1px solid rgba(255,255,255,.08);border-radius:15px;background:rgba(1,7,4,.72);color:var(--text)}
+@media(max-width:600px){.landing .brand-box{width:100%;padding:30px 18px}.brand-top{letter-spacing:.10em}.brand-academy{letter-spacing:.22em}.mode-buttons{flex-direction:column;align-items:center}.landing .mode-btn{width:min(320px,100%)}}
 </style>
 </head>
 <body>
-<main class="landing">
-<section class="brand-box" aria-label="Rasson Snooker Academy">
-<div class="brand-top">RASSON</div>
-<div class="brand-academy">SNOOKER ACADEMY</div>
-<div class="divider"></div>
-<div class="slogan">POWERED BY XL SNOOKER</div>
-<div class="score-heading">Choose Your Scoring Experience</div>
-<div class="mode-buttons" aria-label="Game modes">
-<button class="mode-btn" type="button">Frame Mode</button>
-<button class="mode-btn century" type="button">Century Mode</button>
-</div>
+<section id="landing" class="landing">
+  <div class="brand-box">
+    <div class="brand-top">RASSON</div><div class="brand-academy">SNOOKER ACADEMY</div><div class="divider"></div><div class="slogan">POWERED BY XL SNOOKER</div><div class="score-heading">Choose Your Scoring Experience</div>
+    <div class="mode-buttons"><button id="frameModeBtn" class="mode-btn" type="button">Frame Mode</button><button id="centuryModeBtn" class="mode-btn century" type="button">Century Mode</button></div>
+  </div>
 </section>
-</main>
-</body>
-</html>
+<section id="scoringApp" class="scoring-app hidden">
+<div class="app-shell">
+<header class="topbar"><div class="brand-wrap"><div class="brand"><span class="brand-mark">R</span> RASSON</div><div class="brand-sub">SNOOKER ACADEMY • POWERED BY XL SNOOKER</div></div><div class="top-actions"><span class="live-pill"><span class="live-dot"></span>LIVE SCORING</span><span id="modeLabel" class="mode-pill">FRAME MODE</span></div></header>
+<main class="main">
+<section id="setupCard" class="setup-card"><div class="eyebrow">MATCH SETUP</div><h1>Start Your Frame</h1><p class="intro">Select players and begin the scoring session.</p><div class="player-count-row"><label for="playerCount">NUMBER OF PLAYERS</label><select id="playerCount"><option value="2">2 PLAYERS</option><option value="4">4 PLAYERS</option></select></div><div id="playerInputs" class="player-setup"></div><button id="startBtn" class="primary-btn" type="button">START FRAME <span>→</span></button></section>
+<section id="scoreboard" class="scoreboard hidden"><div id="playersGrid" class="players-grid"></div><div class="vs-panel"><span class="mini-label">FRAME</span><div id="frameNumber" class="frame-number">1</div><div class="vs">VS</div><div id="turnIndicator" class="turn-indicator">PLAYER 1</div></div></section>
+<section id="tableCard" class="table-card hidden"><div class="table-head"><div><div class="eyebrow">TABLE CONTROL</div><div class="sequence-row"><span id="phaseChip" class="phase-chip">FRAME MODE</span><span id="sequenceLabel" class="mini-label">RED</span></div></div><div class="table-total"><span>BREAK</span><strong id="tablePoints">0</strong></div></div><div class="balls-grid"><button class="ball ball-red" data-ball="red" data-points="1"><span>1</span><small>RED</small></button><button class="ball ball-yellow" data-ball="yellow" data-points="2"><span>2</span><small>YELLOW</small></button><button class="ball ball-green" data-ball="green" data-points="3"><span>3</span><small>GREEN</small></button><button class="ball ball-brown" data-ball="brown" data-points="4"><span>4</span><small>BROWN</small></button><button class="ball ball-blue" data-ball="blue" data-points="5"><span>5</span><small>BLUE</small></button><button class="ball ball-pink" data-ball="pink" data-points="6"><span>6</span><small>PINK</small></button><button class="ball ball-black" data-ball="black" data-points="7"><span>7</span><small>BLACK</small></button></div><div class="quick-actions"><button id="missBtn" class="secondary-btn" type="button">MISS<small>END TURN</small></button><button id="nextTurnBtn" class="secondary-btn" type="button">END TURN<small>SWITCH PLAYER</small></button><button id="undoBtn" class="secondary-btn" type="button">UNDO<small>REVERSE ACTION</small></button></div></section>
+<section id="historyCard" class="history-card hidden"><div class="history-head"><div><div class="eyebrow">BREAK HISTORY</div><div class="history-title">Recent Scoring</div></div><span class="record-dot">● RECORDING</span></div><div id="breakHistory" class="history-list"></div></section>
+<section id="controls" class="controls hidden"><button id="newFrameBtn" class="secondary-btn" type="button">NEW FRAME</button><button id="resetMatchBtn" class="secondary-btn" type="button">RESET MATCH</button></section>
+</main></div></section>
+<div id="foulModal" class="modal hidden"><div class="modal-box"><div class="eyebrow">FOUL CONTROL</div><h2>Choose Penalty</h2><p id="foulHelp" class="intro">Select a standard foul penalty.</p><div class="foul-grid"><button data-foul="4">4</button><button data-foul="5">5</button><button data-foul="6">6</button><button data-foul="7">7</button><button data-foul="10">10</button></div><button id="cancelFoul" class="secondary-btn modal-cancel" type="button">CANCEL</button></div></div>
+<script>
+function openScoring(mode){document.getElementById('landing').classList.add('hidden');document.getElementById('scoringApp').classList.remove('hidden');document.getElementById('gameMode')?.remove();var select=document.createElement('select');select.id='gameMode';select.innerHTML='<option value="'+mode+'">'+mode+'</option>';select.style.display='none';document.getElementById('setupCard').prepend(select);if(typeof renderPlayerInputs==='function')renderPlayerInputs();}
+document.getElementById('frameModeBtn').addEventListener('click',()=>openScoring('frame'));document.getElementById('centuryModeBtn').addEventListener('click',()=>openScoring('century'));
+</script><script src="app.js"></script>
+</body></html>
